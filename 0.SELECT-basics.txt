@@ -1,6 +1,6 @@
 1.
 SELECT population FROM world
-  WHERE name = 'Germany'
+  WHERE name = 'Germany';
 
 2.
 SELECT name, population FROM world
@@ -8,4 +8,4 @@ SELECT name, population FROM world
 
 3.
 SELECT name, area FROM world
-  WHERE area BETWEEN 200000 AND 250000
+  WHERE area BETWEEN 200000 AND 250000;
