@@ -1,0 +1,161 @@
+1. SELECT *
+
+SELECT * FROM family_members;
+
+2. SELECT specific columns
+
+SELECT name, species FROM family_members;
+
+3. WHERE ... Equals
+
+SELECT * FROM family_members WHERE species = 'dog';
+
+4. WHERE ... Greater than
+
+SELECT * FROM family_members WHERE num_books_read > 190;
+
+5. WHERE ... Greater than or Equals
+
+SELECT * FROM family_members WHERE num_books_read >= 180;
+
+6. AND
+
+SELECT * FROM friends_of_pickles WHERE species = 'dog' AND height_cm < 45;
+
+7. OR
+
+SELECT * FROM friends_of_pickles WHERE species = 'dog' OR height_cm < 45;
+
+8. IN
+
+SELECT * FROM friends_of_pickles WHERE species NOT IN ('cat', 'dog');
+
+9. DISTINCT
+
+SELECT DISTINCT species FROM friends_of_pickles WHERE height_cm > 50;
+
+10. ORDER BY
+
+SELECT * FROM friends_of_pickles ORDER BY height_cm DESC;
+
+11. LIMIT # of returned rows
+
+SELECT * FROM friends_of_pickles ORDER BY height_cm DESC LIMIT 1;
+
+12. COUNT(*)
+
+SELECT COUNT(*) FROM friends_of_pickles;
+
+13. COUNT(8) ... WHERE
+
+SELECT COUNT(*) FROM friends_of_pickles WHERE species = 'dog';
+
+14. SUM
+
+SELECT SUM(num_books_read) FROM family_members;
+
+15. AVG
+
+SELECT AVG(num_books_read) FROM family_members;
+
+16. MAX and MIN
+
+SELECT MAX(num_books_read) FROM family_members;
+
+17. GROUP BY
+
+SELECT MAX(height_cm), species FROM friends_of_pickles GROUP BY species;
+
+18. Nested queries
+
+SELECT * FROM family_members WHERE num_books_read = (SELECT MAX(num_books_read) FROM family_members);
+
+19. NULL
+
+SELECT * FROM family_members WHERE favorite_book IS NOT NULL;
+
+20. DATE
+
+SELECT * FROM celebs_born WHERE birthdate > '1980-09-01';
+
+21. Inner joins
+
+SELECT character.name, character_actor.actor_name
+FROM character
+INNER JOIN character_actor
+ON character.id = character_actor.character_id;
+
+22. Multiple joins
+
+SELECT character.name, actor.name
+FROM character
+INNER JOIN character_actor
+ON character.id = character_actor.character_id
+INNER JOIN actor
+ON character_actor.actor_id = actor.id;
+
+23. Joins with WHERE
+
+SELECT character.name, tv_show.name
+FROM character
+INNER JOIN character_tv_show
+ON character.id = character_tv_show.character_id
+INNER JOIN tv_show
+ON character_tv_show.tv_show_id = tv_show.id
+WHERE character.name != 'Willow Rosenberg'
+AND tv_show.name != 'How I Met Your Mother';
+
+24. Left joins
+
+SELECT character.name, actor.name
+FROM character
+LEFT JOIN character_actor
+ON character.id = character_actor.character_id
+LEFT JOIN actor
+ON character_actor.actor_id = actor.id;
+
+25. Table alias
+
+SELECT c.name, a.name
+FROM character AS c
+LEFT JOIN character_actor AS ca
+ON c.id = ca.character_id
+LEFT JOIN actor AS a
+ON ca.actor_id = a.id;
+
+26. Columns alias
+
+SELECT character.name AS character, actor.name AS actor
+FROM character
+LEFT JOIN character_actor
+ON character.id = character_actor.character_id
+LEFT JOIN actor
+ON character_actor.actor_id = actor.id;
+
+27. Self joins
+
+SELECT e1.name AS employee_name, e2.name AS boss_name
+FROM employees AS e1
+INNER JOIN employees AS e2
+ON e1.boss_id = e2.id;
+
+28. LIKE
+
+SELECT * FROM robots WHERE name LIKE "%Robot 20__";
+
+29. CASE
+
+SELECT *,
+CASE WHEN species = 'human' THEN 'talk'
+WHEN species = 'dog' THEN 'bark'
+ELSE 'meow'
+END AS sound
+FROM friends_of_pickles;
+
+30. SUBSTR
+
+SELECT * FROM robots WHERE SUBSTR (location,  -2)  LIKE 'NY';
+
+31. COALESCE
+
+SELECT name, COALESCE(tank, gun, sword) AS weapon FROM fighters;
