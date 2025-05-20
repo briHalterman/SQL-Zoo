@@ -1,0 +1,46 @@
+1.
+SELECT who, country.name
+  FROM ttms JOIN country
+         ON (ttms.country=country.id)
+ WHERE games = 2000;
+
+2.
+SELECT who, color FROM ttms
+JOIN country ON (ttms.country=country.id)
+WHERE country.name = 'Sweden';
+
+3.
+SELECT games FROM ttms
+JOIN country ON (ttms.country=country.id)
+WHERE country.name = 'China' AND color = 'gold';
+
+4.
+SELECT who
+  FROM ttws JOIN games
+            ON (ttws.games=games.yr)
+  WHERE city = 'Barcelona';
+
+5.
+SELECT games.city, ttws.color FROM ttws
+JOIN games ON (ttws.games=games.yr)
+WHERE ttws.who = 'Jing Chen';
+
+6.
+SELECT ttws.who, games.city FROM ttws
+JOIN games ON (ttws.games=games.yr)
+WHERE ttws.color='gold';
+
+7.
+SELECT ttmd.games, ttmd.color FROM ttmd
+JOIN team ON (ttmd.team=team.id)
+WHERE team.name='Yan Sen';
+
+8.
+SELECT team.name FROM ttmd
+JOIN team ON (ttmd.team=team.id)
+WHERE ttmd.color='gold' AND ttmd.games=2004;
+
+9.
+SELECT team.name FROM ttmd
+JOIN team ON (ttmd.team=team.id)
+WHERE ttmd.country='FRA';
