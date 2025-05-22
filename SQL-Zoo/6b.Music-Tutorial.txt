@@ -1,0 +1,53 @@
+1.
+SELECT title, artist
+  FROM album JOIN track
+         ON (album.asin=track.album)
+ WHERE song = 'Alison'
+
+2.
+SELECT artist
+FROM album JOIN track ON album.asin=track.album
+WHERE song='Exodus';
+
+3.
+SELECT song
+FROM album JOIN track ON album.asin=track.album
+WHERE album.title='Blur';
+
+4.
+SELECT title, COUNT(*)
+  FROM album JOIN track ON (asin=album)
+ GROUP BY title;
+
+5.
+SELECT DISTINCT album.title, COUNT(track.song)
+FROM album JOIN track ON album.asin=track.album
+WHERE track.song LIKE '%Heart%'
+GROUP BY album.title;
+
+6.
+SELECT track.song FROM album
+JOIN track on album.asin=track.album
+WHERE track.song=album.title;
+
+7.
+SELECT album.title FROM album
+WHERE album.title=album.artist;
+
+8.
+SELECT track.song, COUNT(DISTINCT asin)
+FROM album JOIN track ON album.asin=track.album
+GROUP BY track.song HAVING COUNT(DISTINCT asin) > 2;
+
+9.
+SELECT title, price, COUNT(song)
+FROM album JOIN track ON album.asin=track.album
+GROUP BY album.asin, album.title, album.price
+HAVING price/COUNT(song) < 0.50
+ORDER BY album.title;
+
+10.
+SELECT album.title, COUNT(track.song) FROM album
+JOIN track ON album.asin=track.album
+GROUP BY album.asin, album.title
+ORDER BY COUNT(track.song) DESC, album.title;
