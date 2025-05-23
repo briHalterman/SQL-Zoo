@@ -1,0 +1,29 @@
+1.
+SELECT name FROM msp WHERE party IS NULL;
+
+2.
+SELECT name, leader FROM party;
+
+3.
+SELECT name, leader FROM party
+WHERE leader IS NOT NULL;
+
+4.
+SELECT DISTINCT party.name FROM msp
+JOIN party ON msp.party=party.code
+WHERE party IS NOT NULL;
+
+5.
+SELECT msp.name, party.name FROM msp
+LEFT JOIN party ON msp.party=party.code
+ORDER BY msp.name;
+
+6.
+SELECT party.name, COUNT(msp.name) FROM msp
+JOIN party ON msp.party=party.code
+GROUP BY party.name;
+
+7.
+SELECT party.name, COUNT(msp.name) FROM msp
+RIGHT JOIN party ON msp.party=party.code
+GROUP BY party.name;
